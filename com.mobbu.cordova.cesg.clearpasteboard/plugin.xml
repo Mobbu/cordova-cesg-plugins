@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        id="com.mobbu.cordova.cesg.clearpasteboard"
+        version="0.0.1">
+    <name>Clear pasteboard</name>
+    <description>Cordova plugin that automatically clears the pasteboard on app background to comply with CESG Guidelines (https://www.gov.uk/government/publications/end-user-devices-security-guidance-apple-ios-application-development/end-user-devices-security-guidance-apple-ios-application-security-guidance) and prevents users from copying data out of your app.</description>
+    <author>Mobbu Limited</author>
+    <license>Apache 2.0</license>
+    <keywords>cordova,copy,paste,pasteboard,security,cesg</keywords>
+    <repo>https://github.com/Mobbu/cordova-cesg-plugins.git</repo>
+    
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="CDVDisableCopyPaste">
+                <param name="ios-package" value="CDVDisableCopyPaste"/>
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/CDVDisableCopyPaste.h" />
+        <source-file src="src/ios/CDVDisableCopyPaste.m" />
+    	
+    </platform>
+    
+    <platform name="blackberry10">
+        <source-file src="src/blackberry10/index.js" />
+        
+        <lib-file src="src/blackberry10/native/device/libDisableCopyPaste.so" arch="device"/>
+        <lib-file src="src/blackberry10/native/simulator/libDisableCopyPaste.so" arch="simulator"/>
+        
+        <config-file target="www/config.xml" parent="/widget">
+            <feature name="com.mobbu.cordova.disablecopypaste" value="com.mobbu.cordova.disablecopypaste" />
+        </config-file>
+        
+        <js-module src="www/blackberry10/client.js">
+            <runs />
+        </js-module>
+    </platform>
+    
+</plugin>

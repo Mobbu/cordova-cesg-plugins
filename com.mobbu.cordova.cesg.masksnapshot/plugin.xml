@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        id="com.mobbu.cordova.cesg.masksnapshot"
+        version="0.0.1">
+        
+    <name>Mask snapshot</name>
+    <description>Cordova plugin to remove snapshot or window cover taken on app going into background to comply with CESG Guidelines (https://www.gov.uk/government/publications/end-user-devices-security-guidance-apple-ios-application-development/end-user-devices-security-guidance-apple-ios-application-security-guidance) and provide additional security.</description>
+    <author>Mobbu Limited</author>
+    <license>Apache 2.0</license>
+    <keywords>cordova,copy,paste,pasteboard,security,cesg</keywords>
+    <repo>https://github.com/Mobbu/cordova-cesg-plugins.git</repo>
+    
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="CDVMaskSnapshot">
+                <param name="ios-package" value="CDVMaskSnapshot"/>
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/CDVMaskSnapshot.h" />
+        <source-file src="src/ios/CDVMaskSnapshot.m" />
+    </platform>
+    
+    <platform name="blackberry10">
+        <dependency id="com.blackberry.ui.cover" />
+        <js-module src="www/blackberry10/client.js">
+            <runs />
+        </js-module>
+    </platform>
+    
+</plugin>
