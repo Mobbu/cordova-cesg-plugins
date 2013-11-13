@@ -8,9 +8,6 @@ import android.content.ClipData;
 import android.text.ClipboardManager;
 import android.content.Context;
 
-/**
- * This class echoes a string called from JavaScript.
- */
 @SuppressWarnings("deprecation")
 public class ClearPasteboard extends CordovaPlugin {
 
