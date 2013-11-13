@@ -1,15 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
         id="com.mobbu.cordova.cesg.masksnapshot"
-        version="0.0.1">
+        version="0.0.2">
         
     <name>Mask snapshot</name>
-    <description>Cordova plugin to remove snapshot or window cover taken on app going into background to comply with CESG Guidelines (https://www.gov.uk/government/publications/end-user-devices-security-guidance-apple-ios-application-development/end-user-devices-security-guidance-apple-ios-application-security-guidance) and provide additional security.</description>
+    <description>Cordova plugin to remove snapshot or window cover taken on app going into background to comply with CESG Guidelines and provide additional security. Works with iOS, Android, BB10.</description>
     <author>Mobbu Limited</author>
     <license>Apache 2.0</license>
-    <keywords>cordova,copy,paste,pasteboard,security,cesg</keywords>
+    <keywords>cordova,snapshot,security,window cover,masking</keywords>
     <repo>https://github.com/Mobbu/cordova-cesg-plugins.git</repo>
     
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="MaskSnapshot">
+                <param name="android-package" value="com.mobbu.cordova.cesg.masksnapshot.MaskSnapshot" />
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/MaskSnapshot.java" target-dir="src/com/mobbu/cordova/cesg/masksnapshot" />
+
+     </platform>
+     
     <!-- ios -->
     <platform name="ios">
         <config-file target="config.xml" parent="/*">
@@ -22,7 +35,8 @@
         <header-file src="src/ios/CDVMaskSnapshot.h" />
         <source-file src="src/ios/CDVMaskSnapshot.m" />
     </platform>
-    
+
+    <!-- bb10 -->    
     <platform name="blackberry10">
         <dependency id="com.blackberry.ui.cover" />
         <js-module src="www/blackberry10/client.js">

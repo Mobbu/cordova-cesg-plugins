@@ -1,10 +1,7 @@
 package com.mobbu.cordova.cesg.clearpasteboard;
 
-import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
-import org.apache.cordova.CordovaWebView;
 
-import android.content.ClipData;
 import android.text.ClipboardManager;
 import android.content.Context;
 
