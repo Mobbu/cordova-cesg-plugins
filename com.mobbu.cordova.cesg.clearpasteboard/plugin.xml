@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
         id="com.mobbu.cordova.cesg.clearpasteboard"
-        version="0.0.1">
+        version="0.0.2">
     <name>Clear pasteboard</name>
-    <description>Cordova plugin that automatically clears the pasteboard on app background to comply with CESG Guidelines (https://www.gov.uk/government/publications/end-user-devices-security-guidance-apple-ios-application-development/end-user-devices-security-guidance-apple-ios-application-security-guidance) and prevents users from copying data out of your app.</description>
+    <description>Cordova plugin that automatically clears the pasteboard on app background to comply with CESG Guidelines and prevents users from copying data out of your app. Works on iOS, Android, BB10.</description>
     <author>Mobbu Limited</author>
     <license>Apache 2.0</license>
     <keywords>cordova,copy,paste,pasteboard,security,cesg</keywords>
     <repo>https://github.com/Mobbu/cordova-cesg-plugins.git</repo>
-    
+
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="ClearPasteboard">
+                <param name="android-package" value="com.mobbu.cordova.cesg.clearpasteboard.ClearPasteboard" />
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/ClearPasteboard.java" target-dir="src/com/mobbu/cordova/cesg/clearpasteboard" />
+
+     </platform>
+ 
     <!-- ios -->
     <platform name="ios">
         <config-file target="config.xml" parent="/*">
