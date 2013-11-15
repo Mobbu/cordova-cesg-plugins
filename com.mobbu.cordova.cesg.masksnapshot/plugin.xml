@@ -4,25 +4,12 @@
         version="0.0.2">
         
     <name>Mask snapshot</name>
-    <description>Cordova plugin to remove snapshot or window cover taken on app going into background to comply with CESG Guidelines and provide additional security. Works with iOS, Android, BB10.</description>
+    <description>Cordova plugin to remove snapshot or window cover taken on app going into background to comply with CESG Guidelines and provide additional security. Works with iOS, BB10.</description>
     <author>Mobbu Limited</author>
     <license>Apache 2.0</license>
     <keywords>cordova,snapshot,security,window cover,masking</keywords>
     <repo>https://github.com/Mobbu/cordova-cesg-plugins.git</repo>
     
-    <!-- android -->
-    <platform name="android">
-        <config-file target="res/xml/config.xml" parent="/*">
-            <feature name="MaskSnapshot">
-                <param name="android-package" value="com.mobbu.cordova.cesg.masksnapshot.MaskSnapshot" />
-                <param name="onload" value="true" />
-            </feature>
-        </config-file>
-
-        <source-file src="src/android/MaskSnapshot.java" target-dir="src/com/mobbu/cordova/cesg/masksnapshot" />
-
-     </platform>
-     
     <!-- ios -->
     <platform name="ios">
         <config-file target="config.xml" parent="/*">
