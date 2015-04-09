@@ -26,14 +26,44 @@
 
 - (void)onWillResignActive {
     _imageView = [[UIImageView alloc] initWithFrame:[self.webView.window frame]];
-    _imageView.image = [UIImage imageNamed:@"Default.png"];
-    [self.webView.window addSubview:_imageView];
+    _imageView.image = [self getLaunchImage];
+    UIWindow *mainWindow = [[[UIApplication sharedApplication] windows] lastObject];
+    [mainWindow addSubview:_imageView];
+//    [self.webView.window addSubview:_imageView];
+    self.webView.hidden = true;
 }
 
 - (void)onDidBecomeActive {
+    self.webView.hidden = false;
     if(_imageView != nil) {
         [_imageView removeFromSuperview];
         _imageView = nil;
     }
 }
+
+- (UIImage*)getLaunchImage {
+    static UIImage* splash;
+    static dispatch_once_t predictate;
+    dispatch_once(&predictate, ^{
+        NSArray *allPngImageNames = [[NSBundle mainBundle] pathsForResourcesOfType:@"png"
+                                                                       inDirectory:nil];
+        for (NSString *imgName in allPngImageNames){
+            // Find launch images
+            if ([imgName containsString:@"Default"]){
+                UIImage* img = [UIImage imageNamed:imgName];
+                UIScreen* screen =[UIScreen mainScreen];
+                // Has image same scale and dimensions as our current device's screen?
+                if (img.scale == img.scale && CGSizeEqualToSize(img.size, screen.bounds.size)) {
+                    NSLog(@"Found launch image for current device %@", img.description);
+                    splash = img;
+                }
+            }
+        }
+        if (splash == nil) {
+            splash = [UIImage imageNamed:@"Default.png"];
+        }
+    });
+    return splash;
+}
+
 @end

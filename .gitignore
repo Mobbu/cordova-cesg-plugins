@@ -92,3 +92,6 @@ $RECYCLE.BIN/
 *.jar
 *.war
 *.ear
+
+#JetBrains
+.idea
